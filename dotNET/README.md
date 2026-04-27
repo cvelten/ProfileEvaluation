@@ -99,13 +99,4 @@ Default parameters: DTA = 1 mm, DD = 2%, CAX normalization, analysis restricted 
 
 ---
 
-## Related Project
-
-**[ProfileEvaluationPy](ProfileEvaluationPy/README.md)** is a Python port of this tool offering the same analysis algorithms with a PyQt6 desktop app, a Streamlit web interface, and Docker support (cross-platform, no .NET required).  
-See [`ProfileEvaluationPy/QUICKSTART.md`](ProfileEvaluationPy/QUICKSTART.md) to get started quickly.
-
----
-
-## License
-
-Internal tool — no license assigned.
+### License: [MIT](LICENSE)

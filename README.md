@@ -22,8 +22,8 @@ A desktop application for comparing radiation therapy beam profiles side-by-side
 
 ## Implementations
 
-- [Windows w/ WPF](dotNET/README.md) for the primary WPF desktop application.
-- **[Python w/ Qt6](python/README.md)** for a Python port of this tool offering the same analysis algorithms with a PyQt6 desktop app, a Streamlit web interface, and Docker support (cross-platform, no .NET required).  
+- **[Windows w/ WPF](dotNET/README.md)** for the primary WPF desktop application.
+<!-- - **[Python w/ Qt6](python/README.md)** for a Python port of this tool offering the same analysis algorithms with a PyQt6 desktop app, a Streamlit web interface, and Docker support (cross-platform, no .NET required).   -->
 
 ---
 
