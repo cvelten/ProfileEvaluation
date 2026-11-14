@@ -217,7 +217,53 @@ namespace ProfileEvaluation
 
 			// Plotting
 			{
+				PlotModel.Axes.Clear();
 				PlotModel.Series.Clear();
+
+				PlotModel.Axes.Add(new LinearAxis()
+				{
+					Title = "position [mm]",
+					Key = "PositionAxis",
+					FontSize = 10,
+					Position = AxisPosition.Bottom,
+					Minimum = xyReference.X.Min(),
+					Maximum = xyReference.X.Max(),
+					AbsoluteMinimum = xyReference.X.Min() - 10,
+					AbsoluteMaximum = xyReference.X.Max() + 10,
+					MinimumMajorStep = 10,
+					MinimumMinorStep = 5,
+					MinorGridlineStyle = LineStyle.None,
+					MajorGridlineStyle = LineStyle.Solid,
+					MajorGridlineThickness = 1,
+				});
+
+				PlotModel.Axes.Add(new LinearAxis()
+				{
+					Title = "norm. profile [a.u.]",
+					Key = "ProfileAxis",
+					FontSize = 10,
+					Position = AxisPosition.Left,
+					AbsoluteMinimum = 0,
+					Minimum = 0,
+					Maximum = Math.Max(xyReference.Y.Max(), xyTest.Y.Max()) * 1.05,
+					MinorGridlineStyle = LineStyle.None,
+					MajorGridlineStyle = LineStyle.Solid,
+					MajorGridlineThickness = 1,
+				});
+
+				PlotModel.Axes.Add(new LinearAxis()
+				{
+					Title = "gamma",
+					Key = "GammaAxis",
+					FontSize = 10,
+					Position = AxisPosition.Right,
+					AbsoluteMinimum = 0,
+					Minimum = 0,
+					Maximum = gamma.Where(g => g < double.MaxValue).Max() * 1.05,
+					MinorGridlineStyle = LineStyle.None,
+					MajorGridlineStyle = LineStyle.Solid,
+					MajorGridlineThickness = 1,
+				});
 
 				// Analysis Limit
 				if (GammaRestrictToFieldSize)
@@ -237,16 +283,11 @@ namespace ProfileEvaluation
 
 				// Gamma
 				{
-					var lineSeries = LineSeriesDefault_AxLine;
+					var lineSeries = LineSeriesDefault_Gamma(GammaDD, GammaDTA); ;
 					lineSeries.YAxisKey = "GammaAxis";
 					lineSeries.LineStyle = LineStyle.LongDash;
 					lineSeries.Color = OxyColors.SaddleBrown;
-					lineSeries.Points.Add(new DataPoint(xyReference.X.Min(), 1));
-					lineSeries.Points.Add(new DataPoint(xyReference.X.Max(), 1));
-					PlotModel.Series.Add(lineSeries);
 
-					lineSeries = LineSeriesDefault_Gamma(GammaDD, GammaDTA);
-					lineSeries.YAxisKey = "GammaAxis";
 					// Add data points from pos (using the first dimension) and DataCAX
 					for (int i = 0; i < xyReference.X.Length && i < gamma.Length; ++i)
 					{
